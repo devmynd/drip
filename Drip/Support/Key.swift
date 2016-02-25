@@ -7,7 +7,7 @@ public struct Key {
 }
 
 // MARK: Hashable
-extension Key : Hashable {
+extension Key: Hashable {
   public var hashValue: Int {
     return String(self.type).hashValue
   }

@@ -1,4 +1,4 @@
-class Single<T> : FactoryType {
+class Single<T>: FactoryType {
   typealias Element = T
   
   private var instance: T?

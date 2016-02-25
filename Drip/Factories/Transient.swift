@@ -1,4 +1,4 @@
-class Transient<T> : FactoryType {
+class Transient<T>: FactoryType {
   typealias Element = T
   
   private var generator: () -> T
