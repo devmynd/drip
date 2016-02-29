@@ -1,13 +1,13 @@
-class Transient<T>: FactoryType {
-  typealias Element = T
+class Transient<E, C: ComponentType>: FactoryType {
+  typealias Element = E
   
-  private var generator: () -> T
+  private var generator: (C) -> E
   
-  init(generator: () -> T) {
+  init(generator: (C) -> E) {
     self.generator = generator
   }
   
-  func create() -> T {
-    return self.generator()
+  func create(component: C) -> E {
+    return self.generator(component)
   }
 }

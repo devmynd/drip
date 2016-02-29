@@ -1,8 +1,6 @@
-public protocol ComponentType: Registrar {
+public protocol ComponentType: class {
   var modules:   Registry { get }
   var factories: Registry { get }
-  
-  init(initializers: [Key: (Registrar) -> ModuleType])
 }
 
 //
@@ -12,6 +10,12 @@ public extension ComponentType {
   func module<M>() -> M {
     let module = modules[M.self] as! M
     return module
+  }
+
+  func resolve(initializers: [Key: (Self) -> Any]) {
+    for (key, initializer) in initializers {
+      modules[key] = initializer(self)
+    }
   }
 }
 
@@ -37,25 +41,29 @@ public extension ComponentType {
 //
 // MARK: Building
 
-public extension ComponentType {
-  static func setup() -> BuilderOf<Self> {
-    return BuilderOf()
-  }
+public protocol Buildable {
+  init(initializers: [Key: (Self) -> Any])
 }
 
-public class BuilderOf<C: ComponentType> {
-  var initializers: [Key: (Registrar) -> ModuleType]
+public class BuilderOf<C: ComponentType where C: Buildable> {
+  var initializers: [Key: (C) -> Any]
   
   public init() {
-    initializers = Dictionary<Key, (Registrar) -> ModuleType>()
+    initializers = Dictionary<Key, (C) -> Any>()
   }
   
-  public func module<M: ModuleType>(key: M.Type, _ initializer: (Registrar) -> M) -> Self {
+  public func module<M: ModuleType>(key: M.Type, _ initializer: (C) -> M) -> Self {
     initializers[Key(type: key)] = initializer
     return self
   }
   
   public func build() -> C {
     return C(initializers: initializers)
+  }
+}
+
+public extension ComponentType where Self: Buildable {
+  static func setup() -> BuilderOf<Self> {
+    return BuilderOf()
   }
 }

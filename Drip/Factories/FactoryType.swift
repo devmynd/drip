@@ -1,4 +1,6 @@
 public protocol FactoryType {
   typealias Element
-  func create() -> Element
+  typealias Component: ComponentType
+
+  func create(component: Component) -> Element
 }

@@ -1,14 +1,25 @@
 public protocol ModuleType {
-  weak var registrar: Registrar! { get }
-  init(_ registrar: Registrar)
+  typealias Component: ComponentType
+  weak var component: Component! { get }
+  init(_ component: Component)
 }
 
 extension ModuleType {
   public func single<T>(generator: () -> T) -> T {
-    return registrar.factory { Single(generator: generator) }.create()
+    return single { (_: Component) in generator() }
+  }
+
+  public func single<T>(generator: (Component) -> T) -> T {
+    let factory = component.factory { Single(generator: generator) }
+    return factory.create(component)
   }
   
   public func transient<T>(generator: () -> T) -> T {
-    return registrar.factory { Transient(generator: generator) }.create()
+    return transient { (_: Component) in generator() }
+  }
+
+  public func transient<T>(generator: (Component) -> T) -> T {
+    let factory = component.factory { Transient(generator: generator) }
+    return factory.create(component)
   }
 }
