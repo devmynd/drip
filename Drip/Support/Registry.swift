@@ -1,15 +1,44 @@
 public class Registry {
-  private var store = [Key: Any]()
-  
+  private let modules = Store()
+  private let factories = Store()
+  private let parents = Store()
+
   public init() {}
-  
-  subscript(type: Any.Type) -> Any? {
-    get { return self[Key(type: type)] }
-    set { self[Key(type: type)] = newValue }
+}
+
+//
+// MARK: Modules
+
+extension Registry {
+  func get<M: ModuleType>() -> M {
+    return modules[M.self] as! M
   }
-  
-  subscript(key: Key) -> Any? {
-    get { return store[key] }
-    set { store[key] = newValue }
+
+  func set<M: ModuleType>(type: M.Type, value: M?) {
+    modules[type] = value
+  }
+}
+
+//
+// Factories
+extension Registry {
+  func get<F: FactoryType>() -> F? {
+    return factories[F.Element.self] as? F
+  }
+
+  func set<F: FactoryType>(value: F?) {
+    factories[F.Element.self] = value
+  }
+}
+
+//
+// MARK: Parents
+extension Registry {
+  func set<C: ComponentType>(value: C?) {
+    parents[C.self] = value
+  }
+
+  func get<C: ComponentType>() -> C {
+    return parents[C.self] as! C
   }
 }
