@@ -3,6 +3,6 @@ struct Abstract<E, C: ComponentType>: FactoryType {
   typealias Component = C
 
   func create(component: C) -> E {
-    return (nil as E?)!
+    fatalError("Failed to implement abstract factory for \(E.self)")
   }
 }
