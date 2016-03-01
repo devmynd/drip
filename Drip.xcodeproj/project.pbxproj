@@ -16,6 +16,7 @@
 		102E9D821C7F6EE700CD7C7E /* ComponentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 102E9D811C7F6EE700CD7C7E /* ComponentType.swift */; };
 		102E9D8B1C7F8CEB00CD7C7E /* Registry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 102E9D8A1C7F8CEB00CD7C7E /* Registry.swift */; };
 		103CBDEC1C850B0200F9A017 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 103CBDEB1C850B0200F9A017 /* Store.swift */; };
+		103CBDF21C85143600F9A017 /* Abstract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 103CBDF11C85143600F9A017 /* Abstract.swift */; };
 		107076111C7FB6D00068069B /* Module.swift in Sources */ = {isa = PBXBuildFile; fileRef = 107076101C7FB6D00068069B /* Module.swift */; };
 /* End PBXBuildFile section */
 
@@ -31,6 +32,7 @@
 		102E9D811C7F6EE700CD7C7E /* ComponentType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentType.swift; sourceTree = "<group>"; };
 		102E9D8A1C7F8CEB00CD7C7E /* Registry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Registry.swift; sourceTree = "<group>"; };
 		103CBDEB1C850B0200F9A017 /* Store.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
+		103CBDF11C85143600F9A017 /* Abstract.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Abstract.swift; sourceTree = "<group>"; };
 		107076101C7FB6D00068069B /* Module.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Module.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -81,6 +83,7 @@
 				1027382E1C7E35BF0025E190 /* FactoryType.swift */,
 				102738321C7E35BF0025E190 /* Single.swift */,
 				102738331C7E35BF0025E190 /* Transient.swift */,
+				103CBDF11C85143600F9A017 /* Abstract.swift */,
 			);
 			path = Factories;
 			sourceTree = "<group>";
@@ -180,6 +183,7 @@
 				102E9D8B1C7F8CEB00CD7C7E /* Registry.swift in Sources */,
 				1027383B1C7E35BF0025E190 /* Transient.swift in Sources */,
 				102738361C7E35BF0025E190 /* FactoryType.swift in Sources */,
+				103CBDF21C85143600F9A017 /* Abstract.swift in Sources */,
 				1027383A1C7E35BF0025E190 /* Single.swift in Sources */,
 				102738391C7E35BF0025E190 /* ModuleType.swift in Sources */,
 			);

@@ -20,4 +20,8 @@ extension ModuleType {
   public func transient<T>(generator: (Owner) -> T) -> T {
     return component.resolve { Transient(generator: generator) }
   }
+
+  public func abstract<T>() -> T {
+    return Abstract().create(component)
+  }
 }
