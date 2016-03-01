@@ -6,9 +6,7 @@ public class Registry {
   public init() {}
 }
 
-//
 // MARK: Modules
-
 extension Registry {
   func get<M: ModuleType>() -> M {
     return modules[M.self] as! M
@@ -19,8 +17,7 @@ extension Registry {
   }
 }
 
-//
-// Factories
+// MARK: Factories
 extension Registry {
   func get<F: FactoryType>() -> F? {
     return factories[F.Element.self] as? F
@@ -31,7 +28,6 @@ extension Registry {
   }
 }
 
-//
 // MARK: Parents
 extension Registry {
   func set<C: ComponentType>(value: C?) {

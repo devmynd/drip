@@ -2,7 +2,6 @@ public protocol ComponentType: class {
   var registry: Registry { get }
 }
 
-//
 // MARK: Parents
 public extension ComponentType {
   func parent<P: ComponentType>() -> P {
@@ -15,9 +14,7 @@ public extension ComponentType {
   }
 }
 
-//
 // MARK: Modules
-
 public extension ComponentType {
   func module<M: ModuleType where M.Owner == Self>() -> M {
     return registry.get()
@@ -29,9 +26,7 @@ public extension ComponentType {
   }
 }
 
-//
 // MARK: Factories
-
 extension ComponentType {
   func factory<F: FactoryType>(constructor: () -> F) -> F {
     var result: F
