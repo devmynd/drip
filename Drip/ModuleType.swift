@@ -9,7 +9,7 @@
  A base implementation is provided by the type `Module`.
 */
 public protocol ModuleType {
-  /** The type of the component that manages this module */
+  /// The type of the component that manages this module
   typealias Owner: ComponentType
 
   /** 
@@ -30,10 +30,8 @@ public protocol ModuleType {
 
 extension ModuleType {
   /**
-   Registers a dependency.
-   
-   The dependency is lazily evaluated, and only one instance of will be constructed
-   per component.
+   Registers a dependency. The dependency is lazily evaluated, and only one instance
+   will be constructed per component.
    
    - Parameter generator: A closure that returns an instance of the dependency
    
@@ -44,10 +42,8 @@ extension ModuleType {
   }
 
   /**
-   Registers a dependency.
-   
-   The dependency is lazily evaluated, and only one instance of will be constructed
-   per component.
+   Registers a dependency. The dependency is lazily evaluated, and only one instance
+   will be constructed per component.
    
    - Parameter generator: A closure that returns an instance of the dependency and
      is passed the owning component to resolve child dependencies.
@@ -59,10 +55,8 @@ extension ModuleType {
   }
 
   /**
-   Registers a dependency.
-
-   The dependency is lazily evaluated, and is created on-demand each time it's
-   requested.
+   Registers a dependency. The dependency is lazily evaluated, and is created
+   on-demand each time it's requested.
 
    - Parameter generator: A closure that returns an instance of the dependency and
      is passed the owning component to resolve child dependencies.
@@ -74,10 +68,8 @@ extension ModuleType {
   }
 
   /**
-   Registers a dependency.
-   
-   The dependency is lazily evaluated, and is created on-demand each time it's
-   requested.
+   Registers a dependency. The dependency is lazily evaluated, and is created
+   on-demand each time it's requested.
 
    - Parameter generator: A closure that returns an instance of the dependency
 
@@ -87,6 +79,12 @@ extension ModuleType {
     return component.resolve { Transient(generator: generator) }
   }
 
+  /**
+   Registers a placeholder dependency. If this dependency is requested, it raises
+   an exception instead.
+
+   - Returns: An application crash
+  */
   public func abstract<T>() -> T {
     return Abstract().create(component)
   }

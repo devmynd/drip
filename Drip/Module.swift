@@ -1,6 +1,4 @@
-/**
- Genericized module supertype. Subclasses must specify the owning `ComponentType`
-*/
+/// Genericized module supertype. Subclasses must specify the owning `ComponentType`
 public class Module<C: ComponentType>: ModuleType {
   public typealias Owner = C
   public weak var component: C!

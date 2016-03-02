@@ -8,7 +8,7 @@
 */
 public protocol ComponentType: class {
   /**
-   The `registry` is used as the component's backing store. Conformance to the
+   The `registry` is used as the component's backing store. Conformance to
    `ComponentType` only requires that the implementer declare storage for and
    construct a registry.
   */
