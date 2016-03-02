@@ -1,3 +1,9 @@
+/** 
+ Registry encapsulating a component's storage. Classes conforming to
+`ComponentType` should declare and instantiate a registry, i.e.
+ 
+ `let registry = Registry()`
+*/
 public class Registry {
   private let modules = Store()
   private let factories = Store()
