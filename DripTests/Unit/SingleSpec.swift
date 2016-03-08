@@ -5,16 +5,16 @@ import Nimble
 
 class SingleSpec: QuickSpec {
   override func spec() {
-    var subject: Single<Dependency, TestComponent>!
-    var component: TestComponent!
+    var subject: Single<Dependency1, Component1>!
+    var component: Component1!
 
     beforeEach {
-      subject = Single { _ in return Dependency() }
-      component = TestComponent()
+      subject = Single { _ in return Dependency1() }
+      component = Component1()
     }
 
     describe("create") {
-      var instance: Dependency!
+      var instance: Dependency1!
 
       beforeEach {
         instance = subject.create(component)

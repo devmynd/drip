@@ -5,16 +5,16 @@ import Quick
 
 class TransientSpec: QuickSpec {
   override func  spec() {
-    var subject: Transient<Dependency, TestComponent>!
-    var component: TestComponent!
+    var subject: Transient<Dependency1, Component1>!
+    var component: Component1!
 
     beforeEach {
-      subject = Transient { _ in return Dependency() }
-      component = TestComponent()
+      subject = Transient { _ in return Dependency1() }
+      component = Component1()
     }
 
     describe("create") {
-      var instance: Dependency!
+      var instance: Dependency1!
 
       beforeEach {
         instance = subject.create(component)
