@@ -1,7 +1,7 @@
 @testable import Drip
 
-import Nimble
 import Quick
+import Nimble
 
 class TransientSpec: QuickSpec {
   override func  spec() {
