@@ -16,7 +16,8 @@
 		102E9D821C7F6EE700CD7C7E /* ComponentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 102E9D811C7F6EE700CD7C7E /* ComponentType.swift */; };
 		102E9D8B1C7F8CEB00CD7C7E /* Registry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 102E9D8A1C7F8CEB00CD7C7E /* Registry.swift */; };
 		103C19511C8F8DD3005CA310 /* RegistrySpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 103C19501C8F8DD3005CA310 /* RegistrySpec.swift */; };
-		103C19551C8F9511005CA310 /* ModuleSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 103C19541C8F9511005CA310 /* ModuleSpec.swift */; };
+		103C195C1C907A18005CA310 /* ComponentIntegrations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 103C195B1C907A18005CA310 /* ComponentIntegrations.swift */; };
+		103C195E1C908133005CA310 /* ComponentSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 103C195D1C908133005CA310 /* ComponentSpec.swift */; };
 		103CBDEC1C850B0200F9A017 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 103CBDEB1C850B0200F9A017 /* Store.swift */; };
 		103CBDF21C85143600F9A017 /* Abstract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 103CBDF11C85143600F9A017 /* Abstract.swift */; };
 		107076111C7FB6D00068069B /* Module.swift in Sources */ = {isa = PBXBuildFile; fileRef = 107076101C7FB6D00068069B /* Module.swift */; };
@@ -40,7 +41,8 @@
 		102E9D811C7F6EE700CD7C7E /* ComponentType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentType.swift; sourceTree = "<group>"; };
 		102E9D8A1C7F8CEB00CD7C7E /* Registry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Registry.swift; sourceTree = "<group>"; };
 		103C19501C8F8DD3005CA310 /* RegistrySpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrySpec.swift; sourceTree = "<group>"; };
-		103C19541C8F9511005CA310 /* ModuleSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModuleSpec.swift; sourceTree = "<group>"; };
+		103C195B1C907A18005CA310 /* ComponentIntegrations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentIntegrations.swift; sourceTree = "<group>"; };
+		103C195D1C908133005CA310 /* ComponentSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentSpec.swift; sourceTree = "<group>"; };
 		103CBDEB1C850B0200F9A017 /* Store.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		103CBDF11C85143600F9A017 /* Abstract.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Abstract.swift; sourceTree = "<group>"; };
 		103CBDFB1C862F7900F9A017 /* DripTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DripTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -138,9 +140,18 @@
 			name = Support;
 			sourceTree = "<group>";
 		};
+		103C19561C907528005CA310 /* Integration */ = {
+			isa = PBXGroup;
+			children = (
+				103C195B1C907A18005CA310 /* ComponentIntegrations.swift */,
+			);
+			path = Integration;
+			sourceTree = "<group>";
+		};
 		103CBDFC1C862F7A00F9A017 /* DripTests */ = {
 			isa = PBXGroup;
 			children = (
+				103C19561C907528005CA310 /* Integration */,
 				10F4DD0E1C863620009AD5D1 /* Unit */,
 				10F4DD071C8633F4009AD5D1 /* Fixtures */,
 				103CBDFF1C862F7A00F9A017 /* Info.plist */,
@@ -161,7 +172,7 @@
 		10F4DD0E1C863620009AD5D1 /* Unit */ = {
 			isa = PBXGroup;
 			children = (
-				103C19541C8F9511005CA310 /* ModuleSpec.swift */,
+				103C195D1C908133005CA310 /* ComponentSpec.swift */,
 				10F4DD191C863A65009AD5D1 /* Factories */,
 				103C194F1C8F8DBA005CA310 /* Support */,
 			);
@@ -371,9 +382,10 @@
 			files = (
 				10F4DD0B1C863453009AD5D1 /* Components.swift in Sources */,
 				10F4DD171C8639EE009AD5D1 /* TransientSpec.swift in Sources */,
+				103C195C1C907A18005CA310 /* ComponentIntegrations.swift in Sources */,
 				10F4DD091C863419009AD5D1 /* Modules.swift in Sources */,
+				103C195E1C908133005CA310 /* ComponentSpec.swift in Sources */,
 				10F4DD151C863733009AD5D1 /* Dependencies.swift in Sources */,
-				103C19551C8F9511005CA310 /* ModuleSpec.swift in Sources */,
 				10F4DD101C863678009AD5D1 /* SingleSpec.swift in Sources */,
 				103C19511C8F8DD3005CA310 /* RegistrySpec.swift in Sources */,
 			);

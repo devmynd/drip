@@ -19,7 +19,7 @@ public protocol ModuleType {
   weak var component: Owner! { get }
 
   /**
-   The registered initializer for all `ModuleType`s. Implementeds should 
+   The registered initializer for all `ModuleType`s. Implementers should
    store the paramterized component so that dependencies can be correctly
    resolved.
    

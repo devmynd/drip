@@ -1,10 +1,14 @@
 import Drip
 
-class Component1: ComponentType {
+class ComponentA: ComponentType {
   let registry = Registry()
-  func core() -> Module1 { return module() }
+
+  var core: ModuleA { return module() }
 }
 
-class Component2: ComponentType {
+class ComponentB: ComponentType {
   let registry = Registry()
+
+  var root: ComponentA { return parent() }
+  var core: ModuleB { return module() }
 }

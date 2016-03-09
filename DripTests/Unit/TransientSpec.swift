@@ -5,16 +5,16 @@ import Nimble
 
 class TransientSpec: QuickSpec {
   override func  spec() {
-    var subject: Transient<Dependency1, Component1>!
-    var component: Component1!
+    var subject: Transient<DependencyB, ComponentB>!
+    var component: ComponentB!
 
     beforeEach {
-      subject = Transient { _ in return Dependency1() }
-      component = Component1()
+      subject = Transient { _ in return DependencyB() }
+      component = ComponentB()
     }
 
     describe("create") {
-      var instance: Dependency1!
+      var instance: DependencyB!
 
       beforeEach {
         instance = subject.create(component)

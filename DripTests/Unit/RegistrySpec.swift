@@ -12,10 +12,10 @@ class RegistrySpec: QuickSpec {
     }
 
     describe("module setter/getters") {
-      var module: Module1!
+      var module: ModuleB!
 
       beforeEach {
-        module = Module1(Component1())
+        module = ModuleB(ComponentB())
         subject.set(Module.self, value: module)
       }
 
@@ -24,41 +24,41 @@ class RegistrySpec: QuickSpec {
       }
 
       xit("throw a fatal error when a matching module is not registered") {
-        expect { subject.get() as Component2 }.to(raiseException())
+        expect { subject.get() as ComponentA }.to(raiseException())
       }
     }
 
     describe("factory setter/getters") {
-      var factory: Single<Dependency1, Component1>!
+      var factory: Single<DependencyB, ComponentB>!
 
       beforeEach {
-        factory = Single { _ in Dependency1() }
+        factory = Single { _ in DependencyB() }
         subject.set(factory)
       }
 
       it("retrieve stored factories") {
-        expect(subject.get() as Single<Dependency1, Component1>?) === factory
+        expect(subject.get() as Single<DependencyB, ComponentB>?) === factory
       }
 
       it("return nil when a matching factory is not registered") {
-        expect(subject.get() as Single<Dependency1, Component1>?) === factory
+        expect(subject.get() as Single<DependencyB, ComponentB>?) === factory
       }
     }
 
     describe("component setter/getters") {
-      var component: Component1!
+      var component: ComponentB!
 
       beforeEach {
-        component = Component1()
+        component = ComponentB()
         subject.set(component)
       }
 
       it("retrieve stored components") {
-        expect(subject.get() as Component1) === component
+        expect(subject.get() as ComponentB) === component
       }
 
       xit("throw a fatal error when a matching component is not registered") {
-        expect { subject.get() as Component2 }.to(raiseException())
+        expect { subject.get() as ComponentA }.to(raiseException())
       }
     }
   }
