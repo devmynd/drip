@@ -27,7 +27,7 @@ public extension ComponentType {
     do {
       return try registry.get()
     } catch Error.ComponentNotFound(let type) {
-      terminate("[component: \(self)] failed to find parent: \(type)")
+      terminate("failed to find parent: \(type)")
     } catch {
       terminate()
     }
