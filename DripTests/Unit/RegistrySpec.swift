@@ -11,7 +11,7 @@ class RegistrySpec: QuickSpec {
       subject = Registry()
     }
 
-    describe("module setter/getters") {
+    describe("#get for modules") {
       var module: ModuleB!
 
       beforeEach {
@@ -19,33 +19,33 @@ class RegistrySpec: QuickSpec {
         subject.set(Module.self, value: module)
       }
 
-      it("retrieve stored modules") {
+      it("retrieves stored modules") {
         expect(subject.get() as Module) === module
       }
 
-      xit("throw a fatal error when a matching module is not registered") {
+      xit("throws a fatal error when a matching module is not registered") {
         expect { subject.get() as ComponentA }.to(raiseException())
       }
     }
 
-    describe("factory setter/getters") {
-      var factory: Single<DependencyB, ComponentB>!
+    describe("#get for generators") {
+      typealias GeneratorA = (ComponentA) -> DependencyA
+      typealias GeneratorB = (ComponentB) -> DependencyB
 
       beforeEach {
-        factory = Single { _ in DependencyB() }
-        subject.set(factory)
+        subject.set({ _ in DependencyA() } as GeneratorA)
       }
 
-      it("retrieve stored factories") {
-        expect(subject.get() as Single<DependencyB, ComponentB>?) === factory
+      it("retrieves stored generators") {
+        expect(subject.get() as GeneratorA?).toNot(beNil())
       }
 
-      it("return nil when a matching factory is not registered") {
-        expect(subject.get() as Single<DependencyB, ComponentB>?) === factory
+      it("returns nil when a matching factory is not registered") {
+        expect(subject.get() as GeneratorB?).to(beNil())
       }
     }
 
-    describe("component setter/getters") {
+    describe("#get for components") {
       var component: ComponentB!
 
       beforeEach {
@@ -53,11 +53,11 @@ class RegistrySpec: QuickSpec {
         subject.set(component)
       }
 
-      it("retrieve stored components") {
+      it("retrieves stored components") {
         expect(subject.get() as ComponentB) === component
       }
 
-      xit("throw a fatal error when a matching component is not registered") {
+      xit("throws a fatal error when a matching component is not registered") {
         expect { subject.get() as ComponentA }.to(raiseException())
       }
     }

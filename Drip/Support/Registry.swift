@@ -6,7 +6,7 @@
 */
 public class Registry {
   private let modules = Store()
-  private let factories = Store()
+  private let generators = Store()
   private let parents = Store()
 
   public init() {}
@@ -23,14 +23,14 @@ extension Registry {
   }
 }
 
-// MARK: Factories
+// MARK: Generators
 extension Registry {
-  func get<F: FactoryType>() -> F? {
-    return factories[F.Element.self] as? F
+  func get<C: ComponentType, T>() -> ((C) -> T)? {
+    return generators[T.self] as? (C) -> T
   }
 
-  func set<F: FactoryType>(value: F?) {
-    factories[F.Element.self] = value
+  func set<C: ComponentType, T>(value: ((C) -> T)) {
+    generators[T.self] = value
   }
 }
 

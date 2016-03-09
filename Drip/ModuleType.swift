@@ -51,7 +51,7 @@ extension ModuleType {
    - Returns: An instance of the dependency
   */
   public func single<T>(generator: (Owner) -> T) -> T {
-    return component.resolve { Single(generator: generator) }
+    return component.resolve { Single(generator) }
   }
 
   /**
@@ -76,7 +76,7 @@ extension ModuleType {
    - Returns: An instance of the dependency
   */
   public func transient<T>(generator: (Owner) -> T) -> T {
-    return component.resolve { Transient(generator: generator) }
+    return component.resolve { Transient(generator) }
   }
 
   /**

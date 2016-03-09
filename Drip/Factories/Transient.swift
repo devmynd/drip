@@ -4,7 +4,7 @@ struct Transient<E, C: ComponentType>: FactoryType {
   
   private var generator: (C) -> E
   
-  init(generator: (C) -> E) {
+  init(_ generator: (C) -> E) {
     self.generator = generator
   }
   

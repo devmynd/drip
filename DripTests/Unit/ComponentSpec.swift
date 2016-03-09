@@ -1,3 +1,5 @@
+@testable import Drip
+
 import Quick
 import Nimble
 
@@ -17,7 +19,7 @@ class ComponentSpec: QuickSpec {
       }
     }
 
-    describe("the parent accessor") {
+    describe("#parent") {
       context("when a parent is registered") {
         var parent: ComponentA!
 
@@ -40,7 +42,7 @@ class ComponentSpec: QuickSpec {
       }
     }
 
-    describe("the module accessor") {
+    describe("#module") {
       context("when a module is registered") {
         beforeEach {
           subject = ComponentB()
@@ -58,6 +60,56 @@ class ComponentSpec: QuickSpec {
       context("when a module is not registered") {
         itRaises("module not registered") { subject in
           subject.module() as ModuleB
+        }
+      }
+    }
+
+    describe("#override") {
+      var factory: Transient<DependencyB, ComponentB>!
+
+      beforeEach {
+        factory = Transient { _ in DependencyB() }
+      }
+
+      context("with an instance") {
+        var instance: DependencyB!
+
+        beforeEach {
+          instance = DependencyB()
+          subject.override(instance as DependencyB)
+        }
+
+        it("always resolves that instance") {
+          let result = subject.resolve { factory }
+          expect(result) === instance
+        }
+      }
+
+      context("with a generator") {
+        var instance: DependencyB!
+
+        beforeEach {
+          instance = DependencyB()
+          subject.override { _ in instance as DependencyB }
+        }
+
+        it("reolves to the generator instance") {
+          let result = subject.resolve { factory }
+          expect(result) === instance
+        }
+      }
+
+      context("with a factory") {
+        var instance: DependencyB!
+
+        beforeEach {
+          instance = DependencyB()
+          subject.override(Transient { (_: ComponentB) in instance as DependencyB })
+        }
+
+        it("resolves to the factory instance") {
+          let result = subject.resolve { factory }
+          expect(result) === instance
         }
       }
     }

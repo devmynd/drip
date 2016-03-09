@@ -1,7 +1,7 @@
 import Quick
 import Nimble
 
-class ComponentIntegrationSpec: QuickSpec {
+class ComponentIntegrations: QuickSpec {
   override func spec() {
     var parent: ComponentA!
     var subject: ComponentB!
@@ -22,7 +22,7 @@ class ComponentIntegrationSpec: QuickSpec {
         instance = subject.core.inject()
       }
 
-      it("is resolved through its module") {
+      it("resolves through its module") {
         let result: DependencyB = subject.core.inject()
         expect(result) === instance
       }
@@ -35,7 +35,7 @@ class ComponentIntegrationSpec: QuickSpec {
         instance = subject.core.inject()
       }
 
-      it("is resolved through its module") {
+      it("resolves through its module") {
         let result: DependencyC = subject.core.inject()
         expect(result) !== instance
       }
@@ -48,7 +48,7 @@ class ComponentIntegrationSpec: QuickSpec {
         nested = subject.core.inject()
       }
 
-      it("is resolved through its module") {
+      it("resolves through its module") {
         let result: DependencyC = subject.core.inject()
         expect(result.b) === nested
       }
@@ -61,9 +61,23 @@ class ComponentIntegrationSpec: QuickSpec {
         nested = parent.core.inject()
       }
 
-      it("is resolved through the module") {
+      it("resolves through its module") {
         let result: DependencyC = subject.core.inject()
         expect(result.a) === nested
+      }
+    }
+
+    describe("an overridden dependency") {
+      var instance: DependencyB!
+
+      beforeEach {
+        instance = DependencyB()
+        subject.override(instance as DependencyB)
+      }
+
+      it("resolves through its module") {
+        let result: DependencyB = subject.core.inject()
+        expect(result) === instance
       }
     }
   }

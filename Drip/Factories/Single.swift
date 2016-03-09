@@ -5,7 +5,7 @@ class Single<E, C: ComponentType>: FactoryType {
   private var instance: E?
   private let generator: (C) -> E
   
-  init(generator: (C) -> E) {
+  init(_ generator: (C) -> E) {
     self.generator = generator
   }
   
