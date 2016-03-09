@@ -20,11 +20,13 @@ class RegistrySpec: QuickSpec {
       }
 
       it("retrieves stored modules") {
-        expect(subject.get() as Module) === module
+        expect(try? subject.get() as Module) === module
       }
 
-      xit("throws a fatal error when a matching module is not registered") {
-        expect { subject.get() as ComponentA }.to(raiseException())
+      it("throws an error when a matching module is not registered") {
+        expect {
+          try subject.get() as ModuleA
+        }.to(throwError(Error.ModuleNotFound(type: ModuleA.self)))
       }
     }
 
@@ -54,11 +56,13 @@ class RegistrySpec: QuickSpec {
       }
 
       it("retrieves stored components") {
-        expect(subject.get() as ComponentB) === component
+        expect(try? subject.get() as ComponentB) === component
       }
 
-      xit("throws a fatal error when a matching component is not registered") {
-        expect { subject.get() as ComponentA }.to(raiseException())
+      it("throws a fatal error when a matching component is not registered") {
+        expect {
+          try subject.get() as ComponentA
+        }.to(throwError(Error.ComponentNotFound(type: ComponentA.self)))
       }
     }
   }

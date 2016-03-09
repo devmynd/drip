@@ -24,7 +24,13 @@ public extension ComponentType {
    - Returns: A pre-registered parent of type `P`
   */
   func parent<P: ComponentType>() -> P {
-    return registry.get()
+    do {
+      return try registry.get()
+    } catch Error.ComponentNotFound(let type) {
+      terminate("[component: \(self)] failed to find parent: \(type)")
+    } catch {
+      terminate()
+    }
   }
 
   /**
@@ -53,7 +59,13 @@ public extension ComponentType {
    - Returns: A pre-registered module of type `M`
   */
   func module<M: ModuleType where M.Owner == Self>() -> M {
-    return registry.get()
+    do {
+      return try registry.get()
+    } catch Error.ModuleNotFound(let type) {
+      terminate("failed to find module \(type)")
+    } catch {
+      terminate()
+    }
   }
 
   /**
@@ -124,5 +136,12 @@ extension ComponentType {
     }
 
     return result
+  }
+}
+
+// MARK: Errors
+extension ComponentType {
+  @noreturn func terminate(message: String = "unknown error") {
+    fatalError("[component: \(self)] \(message)")
   }
 }

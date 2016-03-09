@@ -18,6 +18,7 @@
 		103C19511C8F8DD3005CA310 /* RegistrySpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 103C19501C8F8DD3005CA310 /* RegistrySpec.swift */; };
 		103C195C1C907A18005CA310 /* ComponentIntegrations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 103C195B1C907A18005CA310 /* ComponentIntegrations.swift */; };
 		103C195E1C908133005CA310 /* ComponentSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 103C195D1C908133005CA310 /* ComponentSpec.swift */; };
+		103C19601C90BAC2005CA310 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 103C195F1C90BAC2005CA310 /* Error.swift */; };
 		103CBDEC1C850B0200F9A017 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 103CBDEB1C850B0200F9A017 /* Store.swift */; };
 		103CBDF21C85143600F9A017 /* Abstract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 103CBDF11C85143600F9A017 /* Abstract.swift */; };
 		107076111C7FB6D00068069B /* Module.swift in Sources */ = {isa = PBXBuildFile; fileRef = 107076101C7FB6D00068069B /* Module.swift */; };
@@ -43,6 +44,7 @@
 		103C19501C8F8DD3005CA310 /* RegistrySpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrySpec.swift; sourceTree = "<group>"; };
 		103C195B1C907A18005CA310 /* ComponentIntegrations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentIntegrations.swift; sourceTree = "<group>"; };
 		103C195D1C908133005CA310 /* ComponentSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentSpec.swift; sourceTree = "<group>"; };
+		103C195F1C90BAC2005CA310 /* Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		103CBDEB1C850B0200F9A017 /* Store.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		103CBDF11C85143600F9A017 /* Abstract.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Abstract.swift; sourceTree = "<group>"; };
 		103CBDFB1C862F7900F9A017 /* DripTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DripTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -128,6 +130,7 @@
 				102E9D8A1C7F8CEB00CD7C7E /* Registry.swift */,
 				103CBDEB1C850B0200F9A017 /* Store.swift */,
 				102738301C7E35BF0025E190 /* Key.swift */,
+				103C195F1C90BAC2005CA310 /* Error.swift */,
 			);
 			path = Support;
 			sourceTree = "<group>";
@@ -366,6 +369,7 @@
 				102738381C7E35BF0025E190 /* Key.swift in Sources */,
 				102E9D821C7F6EE700CD7C7E /* ComponentType.swift in Sources */,
 				107076111C7FB6D00068069B /* Module.swift in Sources */,
+				103C19601C90BAC2005CA310 /* Error.swift in Sources */,
 				103CBDEC1C850B0200F9A017 /* Store.swift in Sources */,
 				102E9D8B1C7F8CEB00CD7C7E /* Registry.swift in Sources */,
 				1027383B1C7E35BF0025E190 /* Transient.swift in Sources */,

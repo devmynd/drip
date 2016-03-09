@@ -12,10 +12,29 @@ public class Registry {
   public init() {}
 }
 
+// MARK: Parents
+extension Registry {
+  func get<C: ComponentType>() throws -> C {
+    guard let parent = parents[C.self] as? C else {
+      throw Error.ComponentNotFound(type: C.self)
+    }
+
+    return parent
+  }
+
+  func set<C: ComponentType>(value: C?) {
+    parents[C.self] = value
+  }
+}
+
 // MARK: Modules
 extension Registry {
-  func get<M: ModuleType>() -> M {
-    return modules[M.self] as! M
+  func get<M: ModuleType>() throws -> M {
+    guard let module = modules[M.self] as? M else {
+      throw Error.ModuleNotFound(type: M.self)
+    }
+
+    return module
   }
 
   func set<M: ModuleType>(type: M.Type, value: M?) {
@@ -31,16 +50,5 @@ extension Registry {
 
   func set<C: ComponentType, T>(value: ((C) -> T)) {
     generators[T.self] = value
-  }
-}
-
-// MARK: Parents
-extension Registry {
-  func set<C: ComponentType>(value: C?) {
-    parents[C.self] = value
-  }
-
-  func get<C: ComponentType>() -> C {
-    return parents[C.self] as! C
   }
 }
