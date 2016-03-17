@@ -8,9 +8,9 @@ Dependencies are served through containers comprised primarily of two types: `Co
 - [x] Backfill tests
 - [x] Build examples for readme
 - [x] Add ability to override dependencies at the component-level
+- [x] Custom generators
 - [ ] Support for genericizing modules
 - [ ] Dependency registration by abitrary keys (resolve type overlaps)
-- [ ] Custom factories
 
 ### Modules
 

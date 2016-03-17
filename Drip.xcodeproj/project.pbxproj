@@ -8,11 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		102738251C7E358A0025E190 /* Drip.h in Headers */ = {isa = PBXBuildFile; fileRef = 102738241C7E358A0025E190 /* Drip.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		102738361C7E35BF0025E190 /* FactoryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1027382E1C7E35BF0025E190 /* FactoryType.swift */; };
 		102738381C7E35BF0025E190 /* Key.swift in Sources */ = {isa = PBXBuildFile; fileRef = 102738301C7E35BF0025E190 /* Key.swift */; };
 		102738391C7E35BF0025E190 /* ModuleType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 102738311C7E35BF0025E190 /* ModuleType.swift */; };
-		1027383A1C7E35BF0025E190 /* Single.swift in Sources */ = {isa = PBXBuildFile; fileRef = 102738321C7E35BF0025E190 /* Single.swift */; };
-		1027383B1C7E35BF0025E190 /* Transient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 102738331C7E35BF0025E190 /* Transient.swift */; };
 		102E9D821C7F6EE700CD7C7E /* ComponentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 102E9D811C7F6EE700CD7C7E /* ComponentType.swift */; };
 		102E9D8B1C7F8CEB00CD7C7E /* Registry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 102E9D8A1C7F8CEB00CD7C7E /* Registry.swift */; };
 		103C19511C8F8DD3005CA310 /* RegistrySpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 103C19501C8F8DD3005CA310 /* RegistrySpec.swift */; };
@@ -20,13 +17,11 @@
 		103C195E1C908133005CA310 /* ComponentSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 103C195D1C908133005CA310 /* ComponentSpec.swift */; };
 		103C19601C90BAC2005CA310 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 103C195F1C90BAC2005CA310 /* Error.swift */; };
 		103CBDEC1C850B0200F9A017 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 103CBDEB1C850B0200F9A017 /* Store.swift */; };
-		103CBDF21C85143600F9A017 /* Abstract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 103CBDF11C85143600F9A017 /* Abstract.swift */; };
 		107076111C7FB6D00068069B /* Module.swift in Sources */ = {isa = PBXBuildFile; fileRef = 107076101C7FB6D00068069B /* Module.swift */; };
+		109A66BA1C9B679C00FA7A07 /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109A66B91C9B679C00FA7A07 /* Functions.swift */; };
 		10F4DD091C863419009AD5D1 /* Modules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10F4DD081C863419009AD5D1 /* Modules.swift */; };
 		10F4DD0B1C863453009AD5D1 /* Components.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10F4DD0A1C863453009AD5D1 /* Components.swift */; };
-		10F4DD101C863678009AD5D1 /* SingleSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10F4DD0F1C863678009AD5D1 /* SingleSpec.swift */; };
 		10F4DD151C863733009AD5D1 /* Dependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10F4DD141C863733009AD5D1 /* Dependencies.swift */; };
-		10F4DD171C8639EE009AD5D1 /* TransientSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10F4DD161C8639EE009AD5D1 /* TransientSpec.swift */; };
 		FD9634D49F3F800260DF258A /* Pods_DripTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 302E54E85BA9797C4BFB9F86 /* Pods_DripTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -34,11 +29,8 @@
 		102738211C7E358A0025E190 /* Drip.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Drip.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		102738241C7E358A0025E190 /* Drip.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Drip.h; sourceTree = "<group>"; };
 		102738261C7E358A0025E190 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1027382E1C7E35BF0025E190 /* FactoryType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FactoryType.swift; sourceTree = "<group>"; };
 		102738301C7E35BF0025E190 /* Key.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Key.swift; sourceTree = "<group>"; };
 		102738311C7E35BF0025E190 /* ModuleType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModuleType.swift; sourceTree = "<group>"; };
-		102738321C7E35BF0025E190 /* Single.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Single.swift; sourceTree = "<group>"; };
-		102738331C7E35BF0025E190 /* Transient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Transient.swift; sourceTree = "<group>"; };
 		102E9D811C7F6EE700CD7C7E /* ComponentType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentType.swift; sourceTree = "<group>"; };
 		102E9D8A1C7F8CEB00CD7C7E /* Registry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Registry.swift; sourceTree = "<group>"; };
 		103C19501C8F8DD3005CA310 /* RegistrySpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrySpec.swift; sourceTree = "<group>"; };
@@ -46,15 +38,13 @@
 		103C195D1C908133005CA310 /* ComponentSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentSpec.swift; sourceTree = "<group>"; };
 		103C195F1C90BAC2005CA310 /* Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		103CBDEB1C850B0200F9A017 /* Store.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
-		103CBDF11C85143600F9A017 /* Abstract.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Abstract.swift; sourceTree = "<group>"; };
 		103CBDFB1C862F7900F9A017 /* DripTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DripTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		103CBDFF1C862F7A00F9A017 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		107076101C7FB6D00068069B /* Module.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Module.swift; sourceTree = "<group>"; };
+		109A66B91C9B679C00FA7A07 /* Functions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
 		10F4DD081C863419009AD5D1 /* Modules.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Modules.swift; sourceTree = "<group>"; };
 		10F4DD0A1C863453009AD5D1 /* Components.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Components.swift; sourceTree = "<group>"; };
-		10F4DD0F1C863678009AD5D1 /* SingleSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleSpec.swift; sourceTree = "<group>"; };
 		10F4DD141C863733009AD5D1 /* Dependencies.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dependencies.swift; sourceTree = "<group>"; };
-		10F4DD161C8639EE009AD5D1 /* TransientSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransientSpec.swift; sourceTree = "<group>"; };
 		302E54E85BA9797C4BFB9F86 /* Pods_DripTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DripTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4312970B29950B352C1A3104 /* Pods-DripTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DripTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DripTests/Pods-DripTests.debug.xcconfig"; sourceTree = "<group>"; };
 		F4FF0A829BC2097CD90DCBB5 /* Pods-DripTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DripTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-DripTests/Pods-DripTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -105,23 +95,11 @@
 				102E9D811C7F6EE700CD7C7E /* ComponentType.swift */,
 				102738311C7E35BF0025E190 /* ModuleType.swift */,
 				107076101C7FB6D00068069B /* Module.swift */,
-				102E9D761C7F6D1200CD7C7E /* Factories */,
 				102E9D781C7F6D4000CD7C7E /* Support */,
 				102738241C7E358A0025E190 /* Drip.h */,
 				102738261C7E358A0025E190 /* Info.plist */,
 			);
 			path = Drip;
-			sourceTree = "<group>";
-		};
-		102E9D761C7F6D1200CD7C7E /* Factories */ = {
-			isa = PBXGroup;
-			children = (
-				1027382E1C7E35BF0025E190 /* FactoryType.swift */,
-				102738321C7E35BF0025E190 /* Single.swift */,
-				102738331C7E35BF0025E190 /* Transient.swift */,
-				103CBDF11C85143600F9A017 /* Abstract.swift */,
-			);
-			path = Factories;
 			sourceTree = "<group>";
 		};
 		102E9D781C7F6D4000CD7C7E /* Support */ = {
@@ -131,6 +109,7 @@
 				103CBDEB1C850B0200F9A017 /* Store.swift */,
 				102738301C7E35BF0025E190 /* Key.swift */,
 				103C195F1C90BAC2005CA310 /* Error.swift */,
+				109A66B91C9B679C00FA7A07 /* Functions.swift */,
 			);
 			path = Support;
 			sourceTree = "<group>";
@@ -176,19 +155,9 @@
 			isa = PBXGroup;
 			children = (
 				103C195D1C908133005CA310 /* ComponentSpec.swift */,
-				10F4DD191C863A65009AD5D1 /* Factories */,
 				103C194F1C8F8DBA005CA310 /* Support */,
 			);
 			path = Unit;
-			sourceTree = "<group>";
-		};
-		10F4DD191C863A65009AD5D1 /* Factories */ = {
-			isa = PBXGroup;
-			children = (
-				10F4DD0F1C863678009AD5D1 /* SingleSpec.swift */,
-				10F4DD161C8639EE009AD5D1 /* TransientSpec.swift */,
-			);
-			name = Factories;
 			sourceTree = "<group>";
 		};
 		1BCD2AB1818C128D56BB424E /* Pods */ = {
@@ -369,13 +338,10 @@
 				102738381C7E35BF0025E190 /* Key.swift in Sources */,
 				102E9D821C7F6EE700CD7C7E /* ComponentType.swift in Sources */,
 				107076111C7FB6D00068069B /* Module.swift in Sources */,
+				109A66BA1C9B679C00FA7A07 /* Functions.swift in Sources */,
 				103C19601C90BAC2005CA310 /* Error.swift in Sources */,
 				103CBDEC1C850B0200F9A017 /* Store.swift in Sources */,
 				102E9D8B1C7F8CEB00CD7C7E /* Registry.swift in Sources */,
-				1027383B1C7E35BF0025E190 /* Transient.swift in Sources */,
-				102738361C7E35BF0025E190 /* FactoryType.swift in Sources */,
-				103CBDF21C85143600F9A017 /* Abstract.swift in Sources */,
-				1027383A1C7E35BF0025E190 /* Single.swift in Sources */,
 				102738391C7E35BF0025E190 /* ModuleType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -385,12 +351,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				10F4DD0B1C863453009AD5D1 /* Components.swift in Sources */,
-				10F4DD171C8639EE009AD5D1 /* TransientSpec.swift in Sources */,
 				103C195C1C907A18005CA310 /* ComponentIntegrations.swift in Sources */,
 				10F4DD091C863419009AD5D1 /* Modules.swift in Sources */,
 				103C195E1C908133005CA310 /* ComponentSpec.swift in Sources */,
 				10F4DD151C863733009AD5D1 /* Dependencies.swift in Sources */,
-				10F4DD101C863678009AD5D1 /* SingleSpec.swift in Sources */,
 				103C19511C8F8DD3005CA310 /* RegistrySpec.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

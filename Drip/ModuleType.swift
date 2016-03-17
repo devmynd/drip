@@ -2,9 +2,8 @@
  A module encapsulates a subset of a component's provide dependencies. Modules 
  are registered to a component, and must conform to `ModuleType`.
  
- Dependencies are declared as standard methods, and should register a factory
- using the `single`, `transient` or a custom factory helper to control the
- dependency's scope:
+ Dependencies are declared as methods, and should register a generator using the
+ `single`, `transient` or a custom helper to control the dependency's scope.
 
  A base implementation is provided by the type `Module`.
 */
@@ -19,9 +18,8 @@ public protocol ModuleType {
   weak var component: Owner! { get }
 
   /**
-   The registered initializer for all `ModuleType`s. Implementers should
-   store the paramterized component so that dependencies can be correctly
-   resolved.
+   The required initializer for all `ModuleType`s. Implementers should store the
+   paramterized component so that dependencies can be correctly resolved.
    
    - Parameter component: The component owning this module.
   */
@@ -34,7 +32,6 @@ extension ModuleType {
    will be constructed per component.
    
    - Parameter generator: A closure that returns an instance of the dependency
-   
    - Returns: An instance of the dependency
   */
   public func single<T>(generator: () -> T) -> T {
@@ -51,7 +48,7 @@ extension ModuleType {
    - Returns: An instance of the dependency
   */
   public func single<T>(generator: (Owner) -> T) -> T {
-    return component.resolve { Single(generator) }
+    return component.resolve(cache(generator))
   }
 
   /**
@@ -76,16 +73,16 @@ extension ModuleType {
    - Returns: An instance of the dependency
   */
   public func transient<T>(generator: (Owner) -> T) -> T {
-    return component.resolve { Transient(generator) }
+    return component.resolve(generator)
   }
 
   /**
-   Registers a placeholder dependency. If this dependency is requested, it raises
-   an exception instead.
+   Registers a placeholder dependency. If this dependency is requested, it throws a
+   fatal error instead.
 
    - Returns: An application crash
   */
   public func abstract<T>() -> T {
-    return Abstract().create(component)
+    fatalError("Failed to implement abstract generator of \(T.self)")
   }
 }

@@ -5,9 +5,9 @@
  `let registry = Registry()`
 */
 public class Registry {
-  private let modules = Store()
+  private let modules    = Store()
+  private let parents    = Store()
   private let generators = Store()
-  private let parents = Store()
 
   public init() {}
 }

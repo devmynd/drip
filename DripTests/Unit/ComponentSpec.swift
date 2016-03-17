@@ -65,10 +65,10 @@ class ComponentSpec: QuickSpec {
     }
 
     describe("#override") {
-      var factory: Transient<DependencyB, ComponentB>!
+      var generator: (ComponentB -> DependencyB)!
 
       beforeEach {
-        factory = Transient { _ in DependencyB() }
+        generator = { _ in DependencyB() }
       }
 
       context("with an instance") {
@@ -80,7 +80,7 @@ class ComponentSpec: QuickSpec {
         }
 
         it("always resolves that instance") {
-          let result = subject.resolve { factory }
+          let result = subject.resolve(generator)
           expect(result) === instance
         }
       }
@@ -94,22 +94,45 @@ class ComponentSpec: QuickSpec {
         }
 
         it("reolves to the generator instance") {
-          let result = subject.resolve { factory }
+          let result = subject.resolve(generator)
           expect(result) === instance
         }
       }
+    }
 
-      context("with a factory") {
-        var instance: DependencyB!
+    describe("#resolve") {
+      var evaluated: Bool!
+      var generator: (ComponentB -> DependencyB)!
 
+      beforeEach {
+        subject = ComponentB()
+          .module(ModuleB.self) { ModuleB($0) }
+
+        evaluated = false
+        generator = { _ in
+          evaluated = true
+          return DependencyB()
+        }
+      }
+
+      context("when nothing is registered") {
         beforeEach {
-          instance = DependencyB()
-          subject.override(Transient { (_: ComponentB) in instance as DependencyB })
+          subject.resolve(generator)
         }
 
-        it("resolves to the factory instance") {
-          let result = subject.resolve { factory }
-          expect(result) === instance
+        it("evalues the parameterized generator") {
+          expect(evaluated).to(beTrue())
+        }
+      }
+
+      context("when something is already registered") {
+        beforeEach {
+          subject.resolve { _ in DependencyB() }
+          subject.resolve(generator)
+        }
+
+        fit("does not evealue the parameterized generator") {
+          expect(evaluated).to(beFalse())
         }
       }
     }
