@@ -19,6 +19,10 @@ class ModuleB: Module<ComponentB> {
     return single { DependencyB() }
   }
 
+  func inject2() -> DependencyB {
+    return single("alt") { DependencyB() }
+  }
+
   func inject() -> DependencyC {
     return transient {
       DependencyC(

@@ -80,7 +80,7 @@ class ComponentSpec: QuickSpec {
         }
 
         it("always resolves that instance") {
-          let result = subject.resolve(generator)
+          let result = subject.resolve(generator: generator)
           expect(result) === instance
         }
       }
@@ -93,8 +93,23 @@ class ComponentSpec: QuickSpec {
           subject.override { _ in instance as DependencyB }
         }
 
-        it("reolves to the generator instance") {
-          let result = subject.resolve(generator)
+        it("resolves to the generator instance") {
+          let result = subject.resolve(generator: generator)
+          expect(result) === instance
+        }
+      }
+
+      context("with an explicit key") {
+        let key = "alt"
+        var instance: DependencyB!
+
+        beforeEach {
+          instance = DependencyB()
+          subject.override(key) { _ in instance as DependencyB }
+        }
+
+        it("resolves to the generator instance") {
+          let result = subject.resolve(key, generator: generator)
           expect(result) === instance
         }
       }
@@ -117,10 +132,10 @@ class ComponentSpec: QuickSpec {
 
       context("when nothing is registered") {
         beforeEach {
-          subject.resolve(generator)
+          subject.resolve(generator: generator)
         }
 
-        it("evalues the parameterized generator") {
+        it("evaluates the parameterized generator") {
           expect(evaluated).to(beTrue())
         }
       }
@@ -128,10 +143,10 @@ class ComponentSpec: QuickSpec {
       context("when something is already registered") {
         beforeEach {
           subject.resolve { _ in DependencyB() }
-          subject.resolve(generator)
+          subject.resolve(generator: generator)
         }
 
-        fit("does not evealue the parameterized generator") {
+        it("does not evaluate the parameterized generator") {
           expect(evaluated).to(beFalse())
         }
       }

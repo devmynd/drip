@@ -11,6 +11,25 @@ class RegistrySpec: QuickSpec {
       subject = Registry()
     }
 
+    describe("#get for components") {
+      var component: ComponentB!
+
+      beforeEach {
+        component = ComponentB()
+        subject.set(component)
+      }
+
+      it("retrieves stored components") {
+        expect(try? subject.get() as ComponentB) === component
+      }
+
+      it("throws a fatal error when a matching component is not registered") {
+        expect {
+          try subject.get() as ComponentA
+        }.to(throwError(Error.ComponentNotFound(type: ComponentA.self)))
+      }
+    }
+
     describe("#get for modules") {
       var module: ModuleB!
 
@@ -34,35 +53,22 @@ class RegistrySpec: QuickSpec {
       typealias GeneratorA = (ComponentA) -> DependencyA
       typealias GeneratorB = (ComponentB) -> DependencyB
 
+      var keyA: Key!
+      var keyB: Key!
+
       beforeEach {
-        subject.set({ _ in DependencyA() } as GeneratorA)
+        keyA = Key(DependencyA.self)
+        keyB = Key(DependencyB.self)
+
+        subject.set(keyA, value: { _ in DependencyA() } as GeneratorA)
       }
 
       it("retrieves stored generators") {
-        expect(subject.get() as GeneratorA?).toNot(beNil())
+        expect(subject.get(keyA) as GeneratorA?).toNot(beNil())
       }
 
       it("returns nil when a matching factory is not registered") {
-        expect(subject.get() as GeneratorB?).to(beNil())
-      }
-    }
-
-    describe("#get for components") {
-      var component: ComponentB!
-
-      beforeEach {
-        component = ComponentB()
-        subject.set(component)
-      }
-
-      it("retrieves stored components") {
-        expect(try? subject.get() as ComponentB) === component
-      }
-
-      it("throws a fatal error when a matching component is not registered") {
-        expect {
-          try subject.get() as ComponentA
-        }.to(throwError(Error.ComponentNotFound(type: ComponentA.self)))
+        expect(subject.get(keyB) as GeneratorB?).to(beNil())
       }
     }
   }

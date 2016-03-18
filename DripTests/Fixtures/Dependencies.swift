@@ -1,9 +1,7 @@
 class DependencyA {
-
 }
 
 class DependencyB {
-
 }
 
 class DependencyC {

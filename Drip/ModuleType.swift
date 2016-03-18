@@ -30,50 +30,55 @@ extension ModuleType {
   /**
    Registers a dependency. The dependency is lazily evaluated, and only one instance
    will be constructed per component.
-   
+
+   - Parameter key: A key used to match the correct dependency; defaults to `T.self`
    - Parameter generator: A closure that returns an instance of the dependency
+
    - Returns: An instance of the dependency
   */
-  public func single<T>(generator: () -> T) -> T {
-    return single { (_: Owner) in generator() }
+  public func single<T>(key: KeyConvertible = Key(T.self), generator: () -> T) -> T {
+    return single(key) { (_: Owner) in generator() }
   }
 
   /**
    Registers a dependency. The dependency is lazily evaluated, and only one instance
    will be constructed per component.
-   
+
+   - Parameter key: A key used to match the correct dependency; defaults to the `T.self`
    - Parameter generator: A closure that returns an instance of the dependency and
      is passed the owning component to resolve child dependencies.
-   
+
    - Returns: An instance of the dependency
   */
-  public func single<T>(generator: (Owner) -> T) -> T {
-    return component.resolve(cache(generator))
+  public func single<T>(key: KeyConvertible = Key(T.self), generator: (Owner) -> T) -> T {
+    return component.resolve(key, generator: cache(generator))
   }
 
   /**
    Registers a dependency. The dependency is lazily evaluated, and is created
    on-demand each time it's requested.
 
-   - Parameter generator: A closure that returns an instance of the dependency and
-     is passed the owning component to resolve child dependencies.
-   
-   - Returns: An instance of the dependency
-  */ 
-  public func transient<T>(generator: () -> T) -> T {
-    return transient { (_: Owner) in generator() }
-  }
-
-  /**
-   Registers a dependency. The dependency is lazily evaluated, and is created
-   on-demand each time it's requested.
-
+   - Parameter key: A key used to match the correct dependency; defaults to the `T.self`
    - Parameter generator: A closure that returns an instance of the dependency
 
    - Returns: An instance of the dependency
+  */ 
+  public func transient<T>(key: KeyConvertible = Key(T.self), generator: () -> T) -> T {
+    return transient(key) { (_: Owner) in generator() }
+  }
+
+  /**
+   Registers a dependency. The dependency is lazily evaluated, and is created
+   on-demand each time it's requested.
+
+   - Parameter key: A key used to match the correct dependency; defaults to the `T.self`
+   - Parameter generator: A closure that returns an instance of the dependency and
+     is passed the owning component to resolve child dependencies.
+
+   - Returns: An instance of the dependency
   */
-  public func transient<T>(generator: (Owner) -> T) -> T {
-    return component.resolve(generator)
+  public func transient<T>(key: KeyConvertible = Key(T.self), generator: (Owner) -> T) -> T {
+    return component.resolve(key, generator: generator)
   }
 
   /**

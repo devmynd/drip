@@ -16,9 +16,9 @@
 		103C195C1C907A18005CA310 /* ComponentIntegrations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 103C195B1C907A18005CA310 /* ComponentIntegrations.swift */; };
 		103C195E1C908133005CA310 /* ComponentSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 103C195D1C908133005CA310 /* ComponentSpec.swift */; };
 		103C19601C90BAC2005CA310 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 103C195F1C90BAC2005CA310 /* Error.swift */; };
-		103CBDEC1C850B0200F9A017 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 103CBDEB1C850B0200F9A017 /* Store.swift */; };
 		107076111C7FB6D00068069B /* Module.swift in Sources */ = {isa = PBXBuildFile; fileRef = 107076101C7FB6D00068069B /* Module.swift */; };
 		109A66BA1C9B679C00FA7A07 /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109A66B91C9B679C00FA7A07 /* Functions.swift */; };
+		109A66C21C9C594800FA7A07 /* KeyConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109A66C11C9C594800FA7A07 /* KeyConvertible.swift */; };
 		10F4DD091C863419009AD5D1 /* Modules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10F4DD081C863419009AD5D1 /* Modules.swift */; };
 		10F4DD0B1C863453009AD5D1 /* Components.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10F4DD0A1C863453009AD5D1 /* Components.swift */; };
 		10F4DD151C863733009AD5D1 /* Dependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10F4DD141C863733009AD5D1 /* Dependencies.swift */; };
@@ -37,11 +37,11 @@
 		103C195B1C907A18005CA310 /* ComponentIntegrations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentIntegrations.swift; sourceTree = "<group>"; };
 		103C195D1C908133005CA310 /* ComponentSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentSpec.swift; sourceTree = "<group>"; };
 		103C195F1C90BAC2005CA310 /* Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
-		103CBDEB1C850B0200F9A017 /* Store.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		103CBDFB1C862F7900F9A017 /* DripTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DripTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		103CBDFF1C862F7A00F9A017 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		107076101C7FB6D00068069B /* Module.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Module.swift; sourceTree = "<group>"; };
 		109A66B91C9B679C00FA7A07 /* Functions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
+		109A66C11C9C594800FA7A07 /* KeyConvertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyConvertible.swift; sourceTree = "<group>"; };
 		10F4DD081C863419009AD5D1 /* Modules.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Modules.swift; sourceTree = "<group>"; };
 		10F4DD0A1C863453009AD5D1 /* Components.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Components.swift; sourceTree = "<group>"; };
 		10F4DD141C863733009AD5D1 /* Dependencies.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dependencies.swift; sourceTree = "<group>"; };
@@ -95,6 +95,7 @@
 				102E9D811C7F6EE700CD7C7E /* ComponentType.swift */,
 				102738311C7E35BF0025E190 /* ModuleType.swift */,
 				107076101C7FB6D00068069B /* Module.swift */,
+				109A66BE1C9C4DE900FA7A07 /* Registry */,
 				102E9D781C7F6D4000CD7C7E /* Support */,
 				102738241C7E358A0025E190 /* Drip.h */,
 				102738261C7E358A0025E190 /* Info.plist */,
@@ -105,9 +106,6 @@
 		102E9D781C7F6D4000CD7C7E /* Support */ = {
 			isa = PBXGroup;
 			children = (
-				102E9D8A1C7F8CEB00CD7C7E /* Registry.swift */,
-				103CBDEB1C850B0200F9A017 /* Store.swift */,
-				102738301C7E35BF0025E190 /* Key.swift */,
 				103C195F1C90BAC2005CA310 /* Error.swift */,
 				109A66B91C9B679C00FA7A07 /* Functions.swift */,
 			);
@@ -139,6 +137,16 @@
 				103CBDFF1C862F7A00F9A017 /* Info.plist */,
 			);
 			path = DripTests;
+			sourceTree = "<group>";
+		};
+		109A66BE1C9C4DE900FA7A07 /* Registry */ = {
+			isa = PBXGroup;
+			children = (
+				102E9D8A1C7F8CEB00CD7C7E /* Registry.swift */,
+				102738301C7E35BF0025E190 /* Key.swift */,
+				109A66C11C9C594800FA7A07 /* KeyConvertible.swift */,
+			);
+			path = Registry;
 			sourceTree = "<group>";
 		};
 		10F4DD071C8633F4009AD5D1 /* Fixtures */ = {
@@ -337,10 +345,10 @@
 			files = (
 				102738381C7E35BF0025E190 /* Key.swift in Sources */,
 				102E9D821C7F6EE700CD7C7E /* ComponentType.swift in Sources */,
+				109A66C21C9C594800FA7A07 /* KeyConvertible.swift in Sources */,
 				107076111C7FB6D00068069B /* Module.swift in Sources */,
 				109A66BA1C9B679C00FA7A07 /* Functions.swift in Sources */,
 				103C19601C90BAC2005CA310 /* Error.swift in Sources */,
-				103CBDEC1C850B0200F9A017 /* Store.swift in Sources */,
 				102E9D8B1C7F8CEB00CD7C7E /* Registry.swift in Sources */,
 				102738391C7E35BF0025E190 /* ModuleType.swift in Sources */,
 			);

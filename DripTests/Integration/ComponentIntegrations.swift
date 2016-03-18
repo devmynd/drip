@@ -41,6 +41,24 @@ class ComponentIntegrations: QuickSpec {
       }
     }
 
+    describe("a dependency with an explicit key") {
+      var instance: DependencyB!
+
+      beforeEach {
+        instance = subject.core.inject2()
+      }
+
+      it("resolves through its module") {
+        let result: DependencyB = subject.core.inject2()
+        expect(result) === instance
+      }
+
+      it("does not resolve to any equivalently-typed, inferred dependency") {
+        let other: DependencyB = subject.core.inject()
+        expect(other) !== instance
+      }
+    }
+
     describe("a nested dependency within the component") {
       var nested: DependencyB!
 
