@@ -53,7 +53,7 @@ class ComponentIntegrations: QuickSpec {
         expect(result) === instance
       }
 
-      it("does not resolve to any equivalently-typed, inferred dependency") {
+      it("does not resolve to a dependency with an inferred key of its type") {
         let other: DependencyB = subject.core.inject()
         expect(other) !== instance
       }

@@ -14,8 +14,8 @@ public protocol KeyConvertible {
   func key() -> Key
 }
 
-extension Hashable where Self: KeyConvertible {
-  public func key() -> Key {
+public extension Hashable where Self: KeyConvertible {
+  func key() -> Key {
     return Key(self)
   }
 }
