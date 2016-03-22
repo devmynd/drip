@@ -50,7 +50,7 @@ extension ModuleType {
 
    - Returns: An instance of the dependency
   */
-  public func single<T>(key: KeyConvertible = Key(T.self), generator: (Owner) -> T) -> T {
+  public func single<T>(key: KeyConvertible = Key(T.self), generator: Owner -> T) -> T {
     return component.resolve(key, generator: cache(generator))
   }
 
@@ -77,7 +77,7 @@ extension ModuleType {
 
    - Returns: An instance of the dependency
   */
-  public func transient<T>(key: KeyConvertible = Key(T.self), generator: (Owner) -> T) -> T {
+  public func transient<T>(key: KeyConvertible = Key(T.self), generator: Owner -> T) -> T {
     return component.resolve(key, generator: generator)
   }
 

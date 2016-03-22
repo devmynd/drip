@@ -7,7 +7,7 @@ class ComponentSpec: QuickSpec {
   override func spec() {
     var subject: ComponentB!
 
-    func itRaises(error: String, trigger: (ComponentB) -> ()) {
+    func itRaises(error: String, trigger: ComponentB -> Void) {
       var subject: ComponentB!
 
       beforeEach {

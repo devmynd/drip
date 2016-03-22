@@ -50,8 +50,8 @@ class RegistrySpec: QuickSpec {
     }
 
     describe("#get for generators") {
-      typealias GeneratorA = (ComponentA) -> DependencyA
-      typealias GeneratorB = (ComponentB) -> DependencyB
+      typealias GeneratorA = ComponentA -> DependencyA
+      typealias GeneratorB = ComponentB -> DependencyB
 
       var keyA: Key!
       var keyB: Key!

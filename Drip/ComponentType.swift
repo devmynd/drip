@@ -78,7 +78,7 @@ public extension ComponentType {
 
    - Returns: This component for chaining
   */
-  func module<M: ModuleType where M.Owner == Self>(type: M.Type, initializer: (Self) -> M) -> Self {
+  func module<M: ModuleType where M.Owner == Self>(type: M.Type, initializer: Self -> M) -> Self {
     registry.set(type, value: initializer(self))
     return self
   }
@@ -97,16 +97,16 @@ public extension ComponentType {
 
    - Returns: An instance of `T`
   */
-  func resolve<T>(key: KeyConvertible = Key(T.self), generator: (Self) -> T) -> T {
+  func resolve<T>(key: KeyConvertible = Key(T.self), generator: Self -> T) -> T {
     return lazyMatchFor(key, generator: generator)(self)
   }
 }
 
 extension ComponentType {
-  func lazyMatchFor<T>(key: KeyConvertible, generator: (Self) -> T) -> (Self) -> T {
-    var result: (Self) -> T
+  func lazyMatchFor<T>(key: KeyConvertible, generator: Self -> T) -> Self -> T {
+    var result: Self -> T
 
-    if let match: (Self) -> T = registry.get(key) {
+    if let match: Self -> T = registry.get(key) {
       result = match
     } else {
       result = generator
@@ -150,7 +150,7 @@ public extension ComponentType {
 
    - Returns: This component for chaining
   */
-  func override<T>(key: KeyConvertible = Key(T.self), generator: (Self) -> T) -> Self {
+  func override<T>(key: KeyConvertible = Key(T.self), generator: Self -> T) -> Self {
     registry.set(key, value: generator)
     return self
   }

@@ -44,11 +44,11 @@ extension Registry {
 
 // MARK: Generators
 extension Registry {
-  func get<C: ComponentType, T>(key: KeyConvertible) -> ((C) -> T)? {
-    return generators[key.key()] as? (C) -> T
+  func get<C: ComponentType, T>(key: KeyConvertible) -> (C -> T)? {
+    return generators[key.key()] as? C -> T
   }
 
-  func set<C: ComponentType, T>(key: KeyConvertible, value: ((C) -> T)) {
+  func set<C: ComponentType, T>(key: KeyConvertible, value: C -> T) {
     generators[key.key()] = value
   }
 }
