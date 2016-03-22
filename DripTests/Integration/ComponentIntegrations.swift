@@ -1,3 +1,5 @@
+@testable import Drip
+
 import Quick
 import Nimble
 
@@ -38,6 +40,30 @@ class ComponentIntegrations: QuickSpec {
       it("resolves through its module") {
         let result: DependencyC = subject.core.inject()
         expect(result) !== instance
+      }
+    }
+
+    describe("a dependency with an inferred key") {
+      context("presently") {
+        beforeEach {
+          subject.core.inject() as D
+        }
+
+        it("uses the generator's return type as its key") {
+          let result: D? = subject.resolve()
+          expect(result).toNot(beNil())
+        }
+      }
+
+      context("ideally") {
+        beforeEach {
+          subject.core.inject2() as D
+        }
+
+        xit("uses the _declared_ return type as its key") {
+          let result: D? = subject.resolve()
+          expect(result).toNot(beNil())
+        }
       }
     }
 

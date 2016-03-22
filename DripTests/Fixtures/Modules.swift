@@ -31,4 +31,16 @@ class ModuleB: Module<ComponentB> {
       )
     }
   }
+
+  func inject() -> D {
+    return single {
+      DependencyD() as D
+    }
+  }
+
+  func inject2() -> D {
+    return single {
+      DependencyD()
+    }
+  }
 }

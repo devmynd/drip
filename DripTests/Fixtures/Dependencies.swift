@@ -13,3 +13,9 @@ class DependencyC {
     self.b = b
   }
 }
+
+protocol D {
+}
+
+class DependencyD: D {
+}
