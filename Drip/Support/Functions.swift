@@ -1,3 +1,4 @@
+
 func cache<I, O>(function: I -> O) -> I -> O {
   var memo: O?
 

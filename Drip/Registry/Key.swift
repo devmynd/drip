@@ -1,11 +1,9 @@
 /**
- Note: should only be used to implement of custom generators
+ Note: should only be referenced when implementing of custom generators
 
- Type used to match dependencies. Any `String` and raw `Any.Type`s can be used to
- construct keys.
-
- As keys are used to match dependencies, they should be unique. Collisions will
- result in a component resolving incorrect dependencies.
+ Type used to match dependencies. A `Hashable` or `Any.Type` can be used to construct
+ keys. Keys should have a 1-1 relationship to a dependency, but uniqueness is not
+ enforced.
 */
 public struct Key {
   private let value: Int
@@ -21,9 +19,9 @@ public struct Key {
   }
 
   /**
-   Initializes a key from anything `Hashable`.
+   Initializes a key from a `Hashable`.
 
-   - Parameter hashable: a hashable object to construct the key from
+   - Parameter hashable: a `Hashable` object to construct the key from
    - Returns: A new key
   */
   public init<H: Hashable>(_ hashable: H) {
