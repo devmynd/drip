@@ -56,11 +56,12 @@ public extension ComponentType {
    
    `M` must decare this component as it's `Owner`.
 
+   - Parameter key: A key used to match the correct module; defaults to `M.self`
    - Returns: A pre-registered module of type `M`
   */
-  func module<M: ModuleType where M.Owner == Self>() -> M {
+  func module<M: ModuleType where M.Owner == Self>(key: KeyConvertible = Key(M.self)) -> M {
     do {
-      return try registry.get()
+      return try registry.get(key)
     } catch Error.ModuleNotFound(let type) {
       terminate("failed to find module \(type)")
     } catch {
@@ -69,7 +70,7 @@ public extension ComponentType {
   }
 
   /**
-   Registers a module of type `M`. This module can be retrieved through the `module` 
+   Registers a module of type `M`. This module can be retrieved through the `module`
    accessor method.
    
    - Parameter type: The supertype (or the type itself) of the module to register
@@ -79,7 +80,21 @@ public extension ComponentType {
    - Returns: This component for chaining
   */
   func module<M: ModuleType where M.Owner == Self>(type: M.Type, initializer: Self -> M) -> Self {
-    registry.set(type, value: initializer(self))
+    return self.module(Key(type), initializer: initializer)
+  }
+
+  /**
+   Registers a module of type `M`. This module can be retrieved through the `module`
+   accessor method.
+
+   - Parameter key: A key used to match the correct module; defaults to the `M.self`
+   - Parameter initializer: A closure called immediately that returns or initializes
+   the module, which is then discarded. Passed this component as its only parameter.
+
+   - Returns: This component for chaining
+  */
+  func module<M: ModuleType where M.Owner == Self>(key: KeyConvertible = Key(M.self), initializer: Self -> M) -> Self {
+    registry.set(key, value: initializer(self))
     return self
   }
 }

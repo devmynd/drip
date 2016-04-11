@@ -31,21 +31,24 @@ class RegistrySpec: QuickSpec {
     }
 
     describe("#get for modules") {
+      let key = Key(ModuleB.self)
       var module: ModuleB!
 
       beforeEach {
         module = ModuleB(ComponentB())
-        subject.set(Module.self, value: module)
+        subject.set(key, value: module)
       }
 
       it("retrieves stored modules") {
-        expect(try? subject.get() as Module) === module
+        expect(try? subject.get(key) as ModuleB) === module
       }
 
-      it("throws an error when a matching module is not registered") {
-        expect {
-          try subject.get() as ModuleA
-        }.to(throwError(Error.ModuleNotFound(type: ModuleA.self)))
+      context("when a matching module is not registered") {
+        it("throws an error") {
+          expect {
+            try subject.get(key) as ModuleA
+          }.to(throwError(Error.ModuleNotFound(type: ModuleA.self)))
+        }
       }
     }
 

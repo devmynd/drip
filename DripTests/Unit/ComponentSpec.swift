@@ -46,7 +46,7 @@ class ComponentSpec: QuickSpec {
       context("when a module is registered") {
         beforeEach {
           subject = ComponentB()
-            .module(ModuleB.self) { ModuleB($0) }
+            .module { ModuleB($0) }
         }
 
         it("retrieves the module") {
@@ -121,7 +121,7 @@ class ComponentSpec: QuickSpec {
 
       beforeEach {
         subject = ComponentB()
-          .module(ModuleB.self) { ModuleB($0) }
+          .module { ModuleB($0) }
 
         evaluated = false
         generator = { _ in

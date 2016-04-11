@@ -5,16 +5,16 @@ import Nimble
 
 class ComponentIntegrations: QuickSpec {
   override func spec() {
-    var parent: ComponentA!
+    var parent:  ComponentA!
     var subject: ComponentB!
 
     beforeEach {
       parent = ComponentA()
-        .module(ModuleA.self) { ModuleA($0) }
+        .module { ModuleA($0) }
 
       subject = ComponentB()
         .parent { parent }
-        .module(ModuleB.self) { ModuleB($0) }
+        .module { ModuleB($0) }
     }
 
     describe("a single dependency") {

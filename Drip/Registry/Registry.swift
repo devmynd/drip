@@ -29,16 +29,16 @@ extension Registry {
 
 // MARK: Modules
 extension Registry {
-  func get<M: ModuleType>() throws -> M {
-    guard let module = modules[Key(M.self)] as? M else {
+  func get<M: ModuleType>(key: KeyConvertible) throws -> M {
+    guard let module = modules[key.key()] as? M else {
       throw Error.ModuleNotFound(type: M.self)
     }
 
     return module
   }
 
-  func set<M: ModuleType>(type: M.Type, value: M?) {
-    modules[Key(type)] = value
+  func set<M: ModuleType>(key: KeyConvertible, value: M?) {
+    modules[key.key()] = value
   }
 }
 
