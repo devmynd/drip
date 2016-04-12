@@ -15,6 +15,7 @@ class ModuleB: Module<ComponentB> {
     super.init(component)
   }
 
+  // MARK: custom-keyed dependencies
   func inject() -> DependencyB {
     return single { DependencyB() }
   }
@@ -23,6 +24,7 @@ class ModuleB: Module<ComponentB> {
     return single("alt") { DependencyB() }
   }
 
+  // MARK: nested dependencies
   func inject() -> DependencyC {
     return transient {
       DependencyC(
@@ -32,15 +34,17 @@ class ModuleB: Module<ComponentB> {
     }
   }
 
-  func inject() -> D {
-    return single {
-      DependencyD() as D
-    }
+  // MARK: inherited depdendencies
+  func inject() -> TypeD {
+    return single { DependencyD() as TypeD }
   }
 
-  func inject2() -> D {
-    return single {
-      DependencyD()
-    }
+  func inject2() -> TypeD {
+    return single { DependencyD() }
+  }
+
+  // MARK: generic dependencies
+  func inject<E: TypeE>(requirement: E.Requirement) -> E {
+    return single { return E(requirement: requirement) }
   }
 }

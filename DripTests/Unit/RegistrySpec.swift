@@ -1,7 +1,8 @@
-@testable import Drip
 
 import Quick
 import Nimble
+
+@testable import Drip
 
 class RegistrySpec: QuickSpec {
   override func spec() {
