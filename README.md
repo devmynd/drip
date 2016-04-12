@@ -2,15 +2,7 @@
 
 A lightweight dependency injection framework for Swift, inspired by Dagger. Helps you disentangle your codebase--don't write a `sharedInstance` method ever again.
 
-Dependencies are served through containers comprised primarily of two types: `Components` and `Modules`. At a high level, a `Module` provides specific dependencies, and a `Component` contains a set of `Modules` and constrains their scope.
-
-### TODO
-- [x] Backfill tests
-- [x] Build examples for readme
-- [x] Add ability to override dependencies at the component-level
-- [x] Custom generators
-- [x] Dependency registration by abitrary keys (resolve type overlaps)
-- [ ] Support for genericizing modules
+Dependencies are served through containers comprised primarily of two types: `Components` and `Modules`. At a high level, a `Module` provides specific dependencies, and a `Component` both contains a set of `Modules` and constrains their scope.
 
 ### Modules
 
@@ -49,17 +41,18 @@ func inject() -> ViewModel {
 
 ### Components
 
-A `Component` constrains the scope for a set of modules, and is the container for the modules' dependencies. Components have no built-in lifecycle, but are instead owned by (and match the lifecycle of) a member of your application. A component serves dependencies appropriate for the scope of its owning object. 
+A `Component` constrains the scope for a set of modules, and is the container for the modules' dependencies. Components have no built-in lifecycle, but are instead owned by (and match the lifecycle of) a member of your application. A component serves dependencies appropriate for the scope of its owning object.
 
 For example, an `Application` object might own an `ApplicationComponent` that serves application-wide dependencies like a `Repository` and a `Configuration`.
 
-A component is a class conforming to `ComponentType`. This class must declare storage for a `Registry`.
+A component is a class conforming to `ComponentType`, but typically subclassing `Component`.
 
 ```
 import Drip
 
-final class ViewComponent: ComponentType {
-  var registry = Registry()
+final class ViewComponent: Component {
+  var root: ApplicationComponent { return parent() }
+  var core: ViewModule { return module() }
 }
 ```
 

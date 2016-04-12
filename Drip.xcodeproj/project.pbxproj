@@ -18,6 +18,7 @@
 		103C19601C90BAC2005CA310 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 103C195F1C90BAC2005CA310 /* Error.swift */; };
 		106CE8F81CA0B3A200266E66 /* ComponentExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106CE8F71CA0B3A200266E66 /* ComponentExtensions.swift */; };
 		107076111C7FB6D00068069B /* Module.swift in Sources */ = {isa = PBXBuildFile; fileRef = 107076101C7FB6D00068069B /* Module.swift */; };
+		1072BB411CBD1781002653D3 /* Component.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1072BB401CBD1781002653D3 /* Component.swift */; };
 		109A66BA1C9B679C00FA7A07 /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109A66B91C9B679C00FA7A07 /* Functions.swift */; };
 		109A66C21C9C594800FA7A07 /* KeyConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109A66C11C9C594800FA7A07 /* KeyConvertible.swift */; };
 		10F4DD091C863419009AD5D1 /* Modules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10F4DD081C863419009AD5D1 /* Modules.swift */; };
@@ -42,6 +43,7 @@
 		103CBDFF1C862F7A00F9A017 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		106CE8F71CA0B3A200266E66 /* ComponentExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentExtensions.swift; sourceTree = "<group>"; };
 		107076101C7FB6D00068069B /* Module.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Module.swift; sourceTree = "<group>"; };
+		1072BB401CBD1781002653D3 /* Component.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Component.swift; sourceTree = "<group>"; };
 		109A66B91C9B679C00FA7A07 /* Functions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
 		109A66C11C9C594800FA7A07 /* KeyConvertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyConvertible.swift; sourceTree = "<group>"; };
 		10F4DD081C863419009AD5D1 /* Modules.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Modules.swift; sourceTree = "<group>"; };
@@ -95,6 +97,7 @@
 			isa = PBXGroup;
 			children = (
 				102E9D811C7F6EE700CD7C7E /* ComponentType.swift */,
+				1072BB401CBD1781002653D3 /* Component.swift */,
 				102738311C7E35BF0025E190 /* ModuleType.swift */,
 				107076101C7FB6D00068069B /* Module.swift */,
 				109A66BE1C9C4DE900FA7A07 /* Registry */,
@@ -347,6 +350,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				102738381C7E35BF0025E190 /* Key.swift in Sources */,
+				1072BB411CBD1781002653D3 /* Component.swift in Sources */,
 				102E9D821C7F6EE700CD7C7E /* ComponentType.swift in Sources */,
 				109A66C21C9C594800FA7A07 /* KeyConvertible.swift in Sources */,
 				107076111C7FB6D00068069B /* Module.swift in Sources */,
