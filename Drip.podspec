@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name    = 'Drip'
-  s.version = '0.0.1'
+  s.version = '0.1.0'
   s.summary = 'Lightweight dependency injection for Swift'
 
   s.osx.deployment_target = '10.9'
@@ -17,7 +17,7 @@ Pod::Spec.new do |s|
   s.author = { 'Ty Cobb' => 'ty.cobb.m@gmail.com' }
   s.social_media_url = 'http://twitter.com/wzrad'
 
-  s.source = { git: 'https://github.com/devmynd/drip.git', tag: 'v0.0.1' }
+  s.source = { git: 'https://github.com/devmynd/drip.git', tag: 'v0.1.0' }
   s.source_files  = 'Drip/**/*.swift'
   s.requires_arc = true
 end
