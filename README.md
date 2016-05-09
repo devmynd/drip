@@ -1,8 +1,8 @@
 # Drip
 
-A lightweight dependency injection framework for Swift, inspired by Dagger. Helps you disentangle your codebase--don't write a `sharedInstance` method ever again.
+A lightweight, dagger-ish dependency injection framework for Swift. May `sharedInstance` blot your vision nevermore.
 
-Dependencies are served through containers comprised primarily of two types: `Components` and `Modules`. At a high level, a `Module` provides specific dependencies, and a `Component` contains a set of `Modules` and constrains their scope.
+Dependencies are resolved through type inference whenever possible. Two types, `Components` and `Modules`, compose the dependency container. At a high level, a `Module` provides specific dependencies, and a `Component` both contains a set of `Modules` and constrains their scope.
 
 ### Modules
 

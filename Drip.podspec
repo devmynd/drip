@@ -7,9 +7,9 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = '8.0'
 
   s.description = <<-DESC
-    A lightweight Swift DI library, inspired by Dagger. Provides a mechanism for scoping
-    dependencies and eliminating the shared instance pattern. Relies on type inference to
-    determine injected dependencies, rather than require it be passed explicitly.
+    A lightweight, dagger-ish Swift DI library. Provides mechanisms for scoping dependencies
+    and eliminating the singleton pattern. Relies on type inference to resolve injected dependencies,
+    rather than require types be passed explicitly.
   DESC
 
   s.homepage = 'https://github.com/devmynd/Drip'
