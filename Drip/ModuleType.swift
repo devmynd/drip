@@ -9,7 +9,7 @@
 */
 public protocol ModuleType {
   /// The type of the component that manages this module
-  typealias Owner: ComponentType
+  associatedtype Owner: ComponentType
 
   /** 
    The component that owns this module, passed to the module through its
