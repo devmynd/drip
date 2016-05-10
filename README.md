@@ -25,7 +25,7 @@ A module declares methods describing the strategy to resolve individual dependen
 - `single`: Only one instance is created per-component.
 - `transient`: A new instance is created per-resolution. 
 
-The strategy methods receive the component as their only parameter. In the event that a dependency requires other objects contained by the module's component, you can this parameter be used to inject any nested dependencies.
+Each strategy method receives the component as its only parameter. In the event that a dependency depends on other types provided by the module's component, you to inject them using this component reference.
 
 ```
 func inject() -> Api {
