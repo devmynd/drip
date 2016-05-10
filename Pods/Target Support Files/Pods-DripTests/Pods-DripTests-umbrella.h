@@ -1,4 +1,4 @@
-#import <Cocoa/Cocoa.h>
+#import <UIKit/UIKit.h>
 
 
 FOUNDATION_EXPORT double Pods_DripTestsVersionNumber;

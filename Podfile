@@ -1,6 +1,6 @@
 use_frameworks!
 
-target 'DripTests', exclusive: true do
+target 'DripTests' do
   pod 'Quick', '~> 0.9'
   pod 'Nimble', '~> 4.0'
 end
