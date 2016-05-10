@@ -1,12 +1,11 @@
-@testable import Drip
 
 import Quick
 import Nimble
 
+@testable import Drip
+
 class ComponentSpec: QuickSpec {
   override func spec() {
-    var subject: ComponentB!
-
     func itRaises(error: String, trigger: ComponentB -> Void) {
       var subject: ComponentB!
 
@@ -21,6 +20,7 @@ class ComponentSpec: QuickSpec {
 
     describe("#parent") {
       context("when a parent is registered") {
+        var subject: ComponentB!
         var parent: ComponentA!
 
         beforeEach {
@@ -44,6 +44,8 @@ class ComponentSpec: QuickSpec {
 
     describe("#module") {
       context("when a module is registered") {
+        var subject: ComponentB!
+
         beforeEach {
           subject = ComponentB()
             .module { ModuleB($0) }
@@ -65,9 +67,11 @@ class ComponentSpec: QuickSpec {
     }
 
     describe("#override") {
+      var subject: ComponentB!
       var generator: (ComponentB -> DependencyB)!
 
       beforeEach {
+        subject = ComponentB()
         generator = { _ in DependencyB() }
       }
 
@@ -116,6 +120,7 @@ class ComponentSpec: QuickSpec {
     }
 
     describe("#resolve") {
+      var subject: ComponentB!
       var evaluated: Bool!
       var generator: (ComponentB -> DependencyB)!
 

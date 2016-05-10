@@ -41,17 +41,18 @@ func inject() -> ViewModel {
 
 ### Components
 
-A `Component` constrains the scope for a set of modules, and is the container for the modules' dependencies. Components have no built-in lifecycle, but are instead owned by (and match the lifecycle of) a member of your application. A component serves dependencies appropriate for the scope of its owning object. 
+A `Component` constrains the scope for a set of modules, and is the container for the modules' dependencies. Components have no built-in lifecycle, but are instead owned by (and match the lifecycle of) a member of your application. A component serves dependencies appropriate for the scope of its owning object.
 
 For example, an `Application` object might own an `ApplicationComponent` that serves application-wide dependencies like a `Repository` and a `Configuration`.
 
-A component is a class conforming to `ComponentType`. This class must declare storage for a `Registry`.
+A component is a class conforming to `ComponentType`, but typically subclassing `Component`.
 
 ```
 import Drip
 
-final class ViewComponent: ComponentType {
-  var registry = Registry()
+final class ViewComponent: Component {
+  var root: ApplicationComponent { return parent() }
+  var core: ViewModule { return module() }
 }
 ```
 

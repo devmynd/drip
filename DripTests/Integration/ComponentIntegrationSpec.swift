@@ -1,9 +1,10 @@
-@testable import Drip
 
 import Quick
 import Nimble
 
-class ComponentIntegrations: QuickSpec {
+@testable import Drip
+
+class ComponentIntegrationSpec: QuickSpec {
   override func spec() {
     var parent:  ComponentA!
     var subject: ComponentB!
@@ -46,22 +47,22 @@ class ComponentIntegrations: QuickSpec {
     describe("a dependency with an inferred key") {
       context("presently") {
         beforeEach {
-          subject.core.inject() as D
+          subject.core.inject() as TypeD
         }
 
         it("uses the generator's return type as its key") {
-          let result: D? = subject.resolve()
+          let result: TypeD? = subject.resolve()
           expect(result).toNot(beNil())
         }
       }
 
       context("ideally") {
         beforeEach {
-          subject.core.inject2() as D
+          subject.core.inject2() as TypeD
         }
 
         xit("uses the _declared_ return type as its key") {
-          let result: D? = subject.resolve()
+          let result: TypeD? = subject.resolve()
           expect(result).toNot(beNil())
         }
       }
@@ -121,6 +122,20 @@ class ComponentIntegrations: QuickSpec {
 
       it("resolves through its module") {
         let result: DependencyB = subject.core.inject()
+        expect(result) === instance
+      }
+    }
+
+    describe("a genericized dependency") {
+      let requirement = Req1()
+      var instance: DependencyE<Req1>!
+
+      beforeEach {
+        instance = subject.core.inject(requirement) as DependencyE<Req1>
+      }
+
+      it("resolves through its module") {
+        let result: DependencyE<Req1> = subject.core.inject(requirement)
         expect(result) === instance
       }
     }

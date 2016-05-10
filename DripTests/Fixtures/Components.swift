@@ -1,14 +1,11 @@
+
 import Drip
 
-class ComponentA: ComponentType {
-  let registry = Registry()
-
+final class ComponentA: Component {
   var core: ModuleA { return module() }
 }
 
-class ComponentB: ComponentType {
-  let registry = Registry()
-
+final class ComponentB: Component {
   var root: ComponentA { return parent() }
   var core: ModuleB { return module() }
 }

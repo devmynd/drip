@@ -1,9 +1,7 @@
-class DependencyA {
-}
 
-class DependencyB {
-}
-
+// MARK: Dependency Nesting
+class DependencyA {}
+class DependencyB {}
 class DependencyC {
   let a: DependencyA
   let b: DependencyB
@@ -14,8 +12,23 @@ class DependencyC {
   }
 }
 
-protocol D {
+// MARK: Dependency Inheritance
+protocol TypeD {}
+class DependencyD: TypeD {}
+
+// MARK: Dependency Genericization
+protocol TypeR {}
+
+struct Req1: TypeR {}
+struct Req2: TypeR {}
+
+protocol TypeE {
+  associatedtype Requirement: TypeR
+  init(requirement: Requirement)
 }
 
-class DependencyD: D {
+class DependencyE<R: TypeR>: TypeE {
+  typealias Requirement = R
+  required init(requirement: R) {
+  }
 }
