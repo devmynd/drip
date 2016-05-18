@@ -1,10 +1,50 @@
 # Drip
 
-A lightweight, dagger-ish dependency injection framework for Swift. May `sharedInstance` blot your vision nevermore.
+A lightweight, dagger-ish dependency injection library for Swift. Instantiate scoped, maybe even shared dependencies without littering managers `sharedInstances` and `-Managers`.
 
-Dependencies are resolved through type inference whenever possible. Two types, `Components` and `Modules`, compose the dependency container. At a high level, a `Module` provides specific dependencies, and a `Component` both contains a set of `Modules` and constrains their scope.
+## Installation
 
-### Modules
+Available via [Cocoapods](https://cocoapods.org/?q=drip), add the following to your `Podfile`:
+
+```ruby
+pod 'Drip', '~> 0.1'
+```
+
+## Usage
+Dependencies are provided through methods, like so:
+
+```swift
+func store() -> DataStore {
+  return transient { DataStore() } // ignore the `transient` bit for now
+}
+```
+
+Dependencies must also be part of a _container_ that manages the resolution of any provided dependencies. The container is typically an instance of `Component`, and it is organized into modules that encapsulate sets of dependencies. Typically, modules are instances of `Module` that are bound to a specific component.
+
+```swift
+class AppComponent: Component {
+  var data: DataModule { return module() }
+}
+
+class DataModule<AppComponent> {
+  required init(_ component: AppComponent) { super.init(component) }
+  
+  func store() -> DataStore {
+    return transient { DataStore() } // continue to ignore the `transient` bit
+  }
+}
+```
+
+There is no singleton accessor for `Component`, this is by design. If you want to instantiate any of the component's provided dependencies, you need an instance of the component, and it needs instances of its modules.
+
+```swift
+let component = AppComponent().module { DataModule($0) }
+let store     = component.data.store() // yay
+```
+
+It's tedious to create the component every time you want a dependency, and it's also not very useful. A member of your application should own an instance of the component. For an `AppComponent`, that's probably your application object.
+
+#### Modules
 
 A module provides, and is a logical grouping of, related dependencies. For example, in your application you might define a `ServiceModule` that provides a set of `Api` objects.
 
