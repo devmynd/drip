@@ -14,22 +14,22 @@ pod 'Drip', '~> 0.1'
 Dependencies are provided through methods, like so:
 
 ```swift
-func store() -> DataStore {
+func inject() -> DataStore {
   return transient { DataStore() } // ignore the `transient` bit for now
 }
 ```
 
-Dependencies must also be part of a _container_ that manages the resolution of any provided dependencies. The container is typically an instance of `Component`, and it is organized into modules that encapsulate sets of dependencies. Typically, modules are instances of `Module` that are bound to a specific component.
+Dependencies must also be part of a _container_ that manages the resolution of any provided dependencies. The container is typically an instance of `Component`, and it is organized into modules that encapsulate sets of dependencies. Typically, modules are instances of `Module`, and they are bound to a specific component.
 
 ```swift
 class AppComponent: Component {
-  var data: DataModule { return module() }
+  var main: MainModule { return module() }
 }
 
-class DataModule<AppComponent> {
+class MainModule: Module<AppComponent> {
   required init(_ component: AppComponent) { super.init(component) }
   
-  func store() -> DataStore {
+  func inject() -> DataStore {
     return transient { DataStore() } // continue to ignore the `transient` bit
   }
 }
@@ -38,80 +38,138 @@ class DataModule<AppComponent> {
 There is no singleton accessor for `Component`, this is by design. If you want to instantiate any of the component's provided dependencies, you need an instance of the component, and it needs instances of its modules.
 
 ```swift
-let component = AppComponent().module { DataModule($0) }
-let store     = component.data.store() // yay
+let component = AppComponent().module { MainModule($0) }
+let store: DataStore = component.main.inject() // yay
 ```
 
-It's tedious to create the component every time you want a dependency, and it's also not very useful. A member of your application should own an instance of the component. For an `AppComponent`, that's probably your application object.
+#### Scoping
+Sometimes you need to provide a single instance of a dependency to multiple objects in your graph. Components provide the means to scope such dependencies to a layer of your application so that they don't need to be globally accessible.
 
-#### Modules
+Rather than create components on-demand, as in the previous example, a member of your application should own the component. For example, an `AppComponent` that provide app-wide dependencies (like a data store) is probably owned by your application object:
 
-A module provides, and is a logical grouping of, related dependencies. For example, in your application you might define a `ServiceModule` that provides a set of `Api` objects.
-
-A module is a class conforming to `ModuleType`, but typically subclassing `Module`. A module is coupled to a specific component, and it must specify that component in its type declaration. 
-
+```swift
+class AppDelegate: UIApplicationDelegate {
+  lazy var component = AppComponent()
+    .module { MainModule($0) }
+  ...
+}
 ```
-import Drip
+
+That's nice. In our module we can then use factory methods (`single`, `transient`) to control the lifetime of individual dependencies within a component:
+
+```swift
+class MainModule: Module<AppComponent> {
+  ...
+  func inject() -> DataStore {
+    // only one instance of a `single` dependency is created per-component
+    return single { DataStore() }
+  }
+
+  func inject() -> Service {
+    // a new instance of a `transient` dependency is created per-resolution
+    return transient { Service() }
+  }
+}
+```
+
+#### Nested Dependencies
+If one of your prodvided objects depends on another object in the graph, you can do that too! A module's owning component is passed to the factory methods during dependency resolution:
+
+```swift
+class AppComponent: Component {
+  var main: MainModule { module() }
+}
+
+class MainModule: Module<AppComponent> {
+  ...
+  func inject() -> DataStore ...
+
+  func inject() -> Service {
+    return transient { c in // AppComponent; parameter name is your choice, enjoy!
+      Service(store: c.main.store())
+    }
+  }
+}
+```
+
+#### Component Relationships
+Components can relate to other components and gain access to their dependencies. You can express this using the component's `parent` method:
+
+```swift
+class ViewComponent: Component {
+  var app:  AppComponent { parent() }
+  var view: ViewModule   { module() }
+}
+
+class ViewController: UIViewController {
+  lazy var component: ViewComponent = ViewComponent()
+    .parent { self.app.component } // how you obtain the reference to the parent component is your decision
+    .module { ViewModule($0) }
+}
+```
+
+In this example, you can now provide view-scoped dependencies that depend on objects provided by your app component:
+
+```swift
+struct ViewModel {
+  init(service: Service) ...
+}
 
 class ViewModule: Module<ViewComponent> {
-  required init(_ component: ViewComponent) {
-    super.init(component)
+  ...
+  fun inject() -> ViewModel {
+    return single { c in
+      ViewModel(service: c.app.main.inject())
+    }
   }
 }
 ```
 
-A module declares methods describing the strategy to resolve individual dependencies. At present, modules have two built-in strategies (exposed as instance methods on the module) for resolving dependencies:
+#### Generics
+If you have dependencies with generic parameters, it's easiest to pass them in through individual provider methods. If you had a `Presenter` that required a generic view `V`, it might look something like:
 
-- `single`: Only one instance is created per-component.
-- `transient`: A new instance is created per-resolution. 
-
-Each strategy method receives the component as its only parameter. In the event that a dependency depends on other types provided by the module's component, you to inject them using this component reference.
-
-```
-func inject() -> Api {
-  return transient { Api() }
-}
-
-func inject() -> ViewModel {
-  return single { c in
-    ViewModel(api: c.core.inject())
+```swift
+class ViewModule: Module<ViewComponent> {
+  ...
+  fun inject<V: ViewType>(view view: V) -> Presnter<V> {
+    return single { c in 
+      Presenter(
+        view:    view, 
+        service: c.app.main.inject()) 
+    }
   }
 }
 ```
 
-### Components
+#### Testing
+When testing, you'll often want to use mock instances of your dependencies. 
 
-A `Component` constrains the scope for a set of modules, and is the container for the modules' dependencies. Components have no built-in lifecycle, but are instead owned by (and match the lifecycle of) a member of your application. A component serves dependencies appropriate for the scope of its owning object.
+The easiest way to do this is to substitute mocks for individual depenencies in your test setup using the `override` method:
 
-For example, an `Application` object might own an `ApplicationComponent` that serves application-wide dependencies like a `Repository` and a `Configuration`.
+```swift
+component.override(MockService() as Service)
 
-A component is a class conforming to `ComponentType`, but typically subclassing `Component`.
+// if you can pass in the dependency directly, great
+let view = MockView() 
 
+// view: MockView, service: MockService
+let presenter: Presenter<MockView> = component.view.inject(view: view) 
 ```
-import Drip
 
-final class ViewComponent: Component {
-  var root: ApplicationComponent { return parent() }
-  var core: ViewModule { return module() }
+If you want to mock a whole module, you can provide a subtype of your module that returns mock instances instead of live ones:
+
+```swift
+// you'll probably want MainModule to be a protocol in this case
+class MockMainModule: MainModule {
+  ...
+  fun inject() -> Repo {
+    return transient { MockRepo() as Repo }
+  }
 }
+
+let component = AppComponent().module { MockMainModule($0) as MainModule }
+let repo: Repo = component.main.inject() // MockRepo
 ```
 
-A component declares accessors for referencing its modules (the `module` method will automatically resolve the correct instance).
-
-```
-var core: ViewModule { return module() }
-```
-
-A component may also declare accessors for referencing parent components (the `parent` method will automatically resolve the correct instance). This is useful when declaring a component with a narrower scope that requires dependencies provided by a wider-scoped component.
-
-```
-var root: ApplicationComponent { return parent() }
-```
-
-Components are constrcuted through chainable methods that register its modules (and optionally parents). The type of parents is inferred, but the type of modules must be specified explicitly.
-
-```
-lazy var component: ViewComponent = ViewComponent()
-  .parent { self.app.component }
-  .module(ViewModule.self) { ViewModule($0) }
-```
+#### Gotchas
+Drip uses types to key dependencies, modules, and related components. As you start overriding parts of your object graph, you'll need to upcast objects to some shared ancestor. You'll notice this is done many places in the last couple examples. I haven't found a way to solve this problem at the library-level, but I'd like to.
